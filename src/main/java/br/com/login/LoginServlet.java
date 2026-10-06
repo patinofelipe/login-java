@@ -23,12 +23,9 @@ public class LoginServlet extends HttpServlet {
         String senha = request.getParameter("senha");
 
 
-        // 2. Cria o objeto responsável pela validação
-        LoginValidator validator = new LoginValidator();
+        LoginService service = new LoginService();
 
-
-        // 3. Valida os dados
-        String erro = validator.validar(usuario, senha);
+        String erro = service.realizarLogin(usuario, senha);
 
 
         // 4. Configura a resposta

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Java</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <h1>Login</h1>
+
+            <p class="subtitle">
+                Entre com suas credenciais
+            </p>
+
+            <form id="loginForm" method="post"
+      action="login">
+
+                <div class="form-group">
+
+                    <label for="usuario">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="usuario"
+                        name="usuario"
+                        placeholder="usuario@email.com"
+                        autocomplete="username"
+                    >
+
+                    <span
+                        id="usuarioErro"
+                        class="erro">
+                    </span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                    >
+
+                    <span
+                        id="senhaErro"
+                        class="erro">
+                    </span>
+
+                </div>
+
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+
+                <div
+                    id="mensagem"
+                    class="mensagem">
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>

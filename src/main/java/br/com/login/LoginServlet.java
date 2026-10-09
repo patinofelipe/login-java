@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -17,22 +18,15 @@ public class LoginServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. Recebe os dados enviados pelo formulário
         String usuario = request.getParameter("usuario");
-
         String senha = request.getParameter("senha");
-
 
         LoginService service = new LoginService();
 
         String erro = service.realizarLogin(usuario, senha);
 
-
-        // 4. Configura a resposta
         response.setContentType("text/html; charset=UTF-8");
 
-
-        // 5. Verifica o resultado da validação
         if (erro != null) {
 
             response.getWriter().println("""
@@ -62,8 +56,12 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        // Cria ou recupera a sessão do usuário
+        HttpSession session = request.getSession();
 
-        // 6. Se não existe erro, os dados são válidos
+        // Guarda o e-mail do usuário na sessão
+        session.setAttribute("usuario", usuario);
+
         response.getWriter().println("""
                 <!DOCTYPE html>
                 <html lang="pt-BR">
@@ -75,12 +73,12 @@ public class LoginServlet extends HttpServlet {
 
                 <body>
 
-                    <h1>Login processado pelo Java!</h1>
+                    <h1>Login realizado com sucesso!</h1>
 
-                    <p>Usuário válido: %s</p>
+                    <p>Usuário autenticado: %s</p>
 
                     <p>
-                        Os dados passaram pela validação do servidor.
+                        A sessão do usuário foi criada pelo servidor.
                     </p>
 
                 </body>
